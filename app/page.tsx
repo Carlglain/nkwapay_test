@@ -1,6 +1,3 @@
-import Image from "next/image";
-import NkwaTest from "./components/NkwaTest";
-import HelloWorld from "./components/helloworld";
 import PaymentPage from "./components/LiveTest";
 export default function Home() {
 

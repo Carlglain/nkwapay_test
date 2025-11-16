@@ -1,13 +1,14 @@
 'use client';
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+
 const NkwaTest = () => {
   const [formData, setFormData] = useState({
     amount: '',
     phone: '',
   });
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -15,28 +16,25 @@ const NkwaTest = () => {
     }));
   };
 
-  const handleSubmit = async(e:any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Form Submitted:', formData);
     console.log('API Key:', 'uJvUKKNjyK6N_zip6jIFm');
-    try{
-    const response = await axios.post('https://api.pay.staging.mynkwa.com/collect',{
+    try {
+      const response = await axios.post('https://api.pay.staging.mynkwa.com/collect', {
         amount: Number(formData.amount),
         phoneNumber: formData.phone,
-    },
-{
-    headers:{
-        'Content-Type': 'application/json',
-        'X-API-Key': 'uJvUKKNjyK6N_zip6jIFm', 
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': 'uJvUKKNjyK6N_zip6jIFm',
+        }
+      });
+      console.log('Payment initiated:', response.data);
+    } catch (error) {
+      console.error('Payment error:', error);
     }
-})
-    console.log('Payment initiated:', response.data);
-  } 
-  catch (error) {
-    console.error('Payment error:', error);
-  
   };
-    };
 
   return (
     <div className="max-w-md mx-auto mt-10 p-4 border rounded">

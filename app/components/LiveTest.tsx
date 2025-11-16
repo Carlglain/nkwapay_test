@@ -29,7 +29,8 @@ export default function PaymentPage() {
 
       const result = await response.json();
       alert(JSON.stringify(result, null, 2));
-    } catch (error) {
+    } catch (err) {
+      console.error("Payment error:", err);
       alert("Payment failed. Please try again.");
     } finally {
       setLoading(false);
