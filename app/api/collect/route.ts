@@ -4,7 +4,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const response = await fetch("https://api.pay.mynkwa.com/collect", {
+    const response = await fetch("https://api.pay.mynkwa.com/disburse", {
       method: "POST",
       headers: {
         "X-API-Key": process.env.NKWA_APIKEY || "", // safer fallback
